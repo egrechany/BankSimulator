@@ -1,0 +1,7 @@
+CREATE TABLE users (id SERIAL PRIMARY KEY,full_name VARCHAR(255) NOT NULL,
+email VARCHAR(255) UNIQUE NOT NULL, phone_number VARCHAR(20) UNIQUE NOT NULL,
+password_hash TEXT NOT NULL,date_of_birth DATE,passport_number VARCHAR(50),
+tin_number VARCHAR(50), registration_address TEXT,residential_address TEXT,
+created_time TIMESTAMP WITH TIME ZONE,updated_time TIMESTAMP WITH TIME ZONE);
+
+INSERT INTO Admins (id,username,password,role) VALUES(1,'user','user','USER'),(2,'admin','admin','ADMIN')
