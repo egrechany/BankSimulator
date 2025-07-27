@@ -49,6 +49,10 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)
     private UserRoles role;
+
+    @OneToOne
+    @JoinColumn(name = "bill_id", nullable = true)
+    private Bills bill;
     // + поля для KYC, роли и статуса
 
 

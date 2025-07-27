@@ -32,7 +32,11 @@ public class SecurityConfig {
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
-                .formLogin(Customizer.withDefaults()) // Enables form-based login
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/account")
+                        .failureUrl("/login?error") // Redirect after failed login
+                        .permitAll()) // Enables form-based login
                 .httpBasic(Customizer.withDefaults()); // Enables HTTP Basic authentication
         return http.build();
     }

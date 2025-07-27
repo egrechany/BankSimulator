@@ -1,11 +1,9 @@
 package com.example.banksim.controller;
 
 import com.example.banksim.repository.User;
-import com.example.banksim.service.AuditService;
-import com.example.banksim.service.IAuditService;
-import com.example.banksim.service.ILoggingService;
-import com.example.banksim.service.LoggingServiceAspect;
+import com.example.banksim.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,6 +13,9 @@ public class BankController {
 
     @Autowired
     AuditService audit;
+
+    @Autowired
+    RegistrationService registrationService;
 
 
     @GetMapping("/public/Info")
@@ -30,6 +31,11 @@ public class BankController {
 
     @PostMapping("/admin/registerUser")
     public Boolean createUser(@RequestBody User user){
-        return false;
+        return registrationService.registerUser(user);
+    }
+
+    @PostMapping("/admin/deleteUser")
+    public Boolean deleteUser(@RequestBody User user){
+        return true;
     }
 }
